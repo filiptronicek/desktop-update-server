@@ -79,6 +79,10 @@ const handleV1Request = async (request: Request) => {
   return responses.SendUpdate(data)
 }
 
+if (![].at) {
+  Array.prototype.at = function(pos) { return this.slice(pos, pos + 1)[0] }
+}
+
 const createProxiedFileUrl = (downloadURL: string, request: Request) => {
 
   const fileName = downloadURL.split('/')?.at(-1)
