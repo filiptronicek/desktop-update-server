@@ -5,8 +5,8 @@ main = "src/index.ts"
 
 [vars]
 GITHUB_ACCOUNT = 'interclip'
-GITHUB_REPO = 'iclip-tauri'
-GITHUB_TOKEN = '' # Optional - used with private repos
+GITHUB_REPO = 'desktop'
+GITHUB_TOKEN = ''
 
 [build]
 command = "npm install && npm run build"
