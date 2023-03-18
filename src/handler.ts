@@ -79,13 +79,14 @@ const handleV1Request = async (request: Request) => {
   return responses.SendUpdate(data)
 }
 
-if (![].at) {
-  Array.prototype.at = function(pos) { return this.slice(pos, pos + 1)[0] }
+function lastInArray(array: ArrayLike<string>) {
+  const length = array.length;
+  return array[length - 1];
 }
 
 const createProxiedFileUrl = (downloadURL: string, request: Request) => {
 
-  const fileName = downloadURL.split('/')?.at(-1)
+  const fileName = lastInArray(downloadURL.split('/'));
   if (!fileName) { throw new Error('Could not get file name from download URL') }
 
 
@@ -96,7 +97,8 @@ const createProxiedFileUrl = (downloadURL: string, request: Request) => {
 }
 
 const getLatestAssets = async (request: Request) => {
-  const fileName = request.url.split('/')?.at(-1)
+  const fileName = lastInArray(request.url.split('/'));
+
   if (!fileName) { throw new Error('Could not get file name from download URL') }
 
   const release = await getLatestRelease(request)
